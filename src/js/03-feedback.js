@@ -23,20 +23,21 @@ const ObjectForm = {
 }
 
 
- function onAllForm(evt) {
-     const messege = ObjectForm[evt.target.name] = evt.target.value;
-    
-       const stringifyMessege = JSON.stringify(messege);
 
-     localStorage.setItem(STORAGE_KEY, stringifyMessege);
+ function onAllForm(evt) {
+   const message = ObjectForm[evt.target.name] = evt.target.value;
+     const stringifyMessage = JSON.stringify(message);
+
+     localStorage.setItem(STORAGE_KEY, stringifyMessage);
       
 }
 
- function populateTextareaInput() {
+function populateTextareaInput() {
     const saveMessage = localStorage.getItem(STORAGE_KEY);
-     if (saveMessage) {
-      
-    saveMessage === JSON.parse(stringifyMessege);
+     if (saveMessage) {  
+        saveMessage = JSON.parse(stringifyMessage);
+
     }
 }
 
+// 
