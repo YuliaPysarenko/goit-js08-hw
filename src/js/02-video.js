@@ -1,22 +1,28 @@
 import VimeoPlayer from "@vimeo/player";
 import LodashThrottle from "lodash.throttle";
-console.log(VimeoPlayer);
-console.log(LodashThrottle);
+
+
 
 const iframe = document.querySelector('iframe');
-const player = new Vimeo.Player(iframe);
+const player = new VimeoPlayer(iframe);
 
- player.on('timeupdate', throttle(onPlay, 1000));
+ player.on('timeupdate',  LodashThrottle(onPlay, 1000));
+// const data = {};
 
-function onPlay(evt) {
+function prDefault(evt) {
+    evt.preventDefault();
+}
+ 
+// console.log(prDefault);
 
-    const message = evt.currentTarget;
-    localStorage.setItem(`videoplayer-current-time`, message);
-
+function onPlay(data) {
+    localStorage.setItem(`videoplayer-current-time`, data.seconds);
 };
 
-player.setCurrentTime().then(function (seconds) {
-    // seconds = the actual time that the player seeked to
+const saveVideo = localStorage.getItem(`videoplayer-current-time`);
+
+player.setCurrentTime(saveVideo).then(function (seconds) {
+ // seconds = the actual time that the player seeked to
 }).catch(function (error) {
     switch (error.name) {
         case 'RangeError':
