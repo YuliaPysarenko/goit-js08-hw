@@ -6,13 +6,11 @@ import LodashThrottle from "lodash.throttle";
 const iframe = document.querySelector('iframe');
 const player = new VimeoPlayer(iframe);
 
- player.on('timeupdate',  LodashThrottle(onPlay, 1000));
-// const data = {};
-
-function prDefault(evt) {
-    evt.preventDefault();
-}
+player.on('timeupdate', LodashThrottle(onPlay, 1000));
  
+// function prDefault(evt) {
+//     evt.preventDefault();
+// }
 // console.log(prDefault);
 
 function onPlay(data) {
