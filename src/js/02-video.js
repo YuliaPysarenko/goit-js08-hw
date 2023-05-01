@@ -6,7 +6,7 @@ const player = new VimeoPlayer(iframe);
 
 player.on('timeupdate', LodashThrottle(onPlay, 1000));
 
- saveVideo = localStorage.getItem(`videoplayer-current-time`);
+ const saveVideo = localStorage.getItem(`videoplayer-current-time`);
 
 function onPlay(data) {
     localStorage.setItem(`videoplayer-current-time`, data.seconds);
